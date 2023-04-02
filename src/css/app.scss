@@ -1,0 +1,20 @@
+// app global css in SCSS form
+
+* {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.bg-dark {
+  background-color: $dark;
+}
+
+.header {
+  padding-top: 15px;
+
+  .icon-notifications {
+    position: absolute;
+    right: 15px;
+  }
+}
