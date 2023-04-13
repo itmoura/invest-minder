@@ -1,6 +1,6 @@
 # Invest Minder (invest-minder)
 
-A Quasar Project
+A Quasar Project - INATEL
 
 ## Install the dependencies
 ```bash
