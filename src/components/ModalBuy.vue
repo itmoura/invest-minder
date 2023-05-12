@@ -22,15 +22,18 @@
 <script>
 import { defineComponent, ref, watch } from "vue";
 import { useQuasar } from "quasar";
+import Assets from "src/service/Assets";
 
 export default defineComponent({
   name: 'ModalBuy',
 
-  props: ['open'],
+  props: ['open', 'assets'],
 
   setup(props, { emit }) {
     const $q = useQuasar()
 
+    const userAssetId = ref(null)
+    const assetId = ref(null)
     const name = ref(null)
     const price = ref(null)
     const quantity = ref(null)
@@ -43,20 +46,37 @@ export default defineComponent({
     watch(() => props.open,
       (value) => {
         modalOpen.value = value;
-      }
+        userAssetId.value = props.assets?.userAssetId;
+        assetId.value = props.assets?.id;
+        name.value = props.assets?.name;
+        price.value = props.assets?.price;
+      },
+      { immediate: true }
     );
 
     const onSubmit = () => {
-      if (name.value === "" || name.value == null)
-        alert("nome vazio");
-      if (price.value === "" || price.value == null)
-        alert("preco vazio");
-      if (quantity.value === "" || quantity.value == null)
-        alert("quantidade vazio");
+      if (!name.value || !price.value || !quantity.value) {
+        alert('Preencha todos os campos')
+      } else {
+        Assets.buyAsset({
+          userId: 1,
+          userAssetId: userAssetId.value,
+          assetId: assetId.value,
+          price: price.value,
+          quantity: quantity.value
+        })
+          .then(() => {
+            alert('Ativo cadastrado com sucesso')
+          })
+          .catch(() => {
+            alert('Erro ao cadastrar ativo')
+          })
+      }
       emit('close', false);
     };
 
     const onReset = () => {
+      userAssetId.value = null;
       name.value = null;
       price.value = null;
       quantity.value = null;

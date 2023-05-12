@@ -24,7 +24,7 @@ module.exports = configure(function (ctx) {
 
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
-    // https://v2.quasar.dev/quasar-cli-webpack/boot-files
+      // https://v2.quasar.dev/quasar-cli-webpack/boot-files
     boot: [
 
 
@@ -85,7 +85,7 @@ module.exports = configure(function (ctx) {
       server: {
         type: 'http'
       },
-      port: 8080,
+      port: 3000,
       open: true // opens browser window automatically
     },
 

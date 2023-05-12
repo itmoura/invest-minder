@@ -58,8 +58,15 @@
       .card-border {
         padding: 3px;
         position: relative;
-        background: linear-gradient($primary, $green-gradient, $blue-gradient, $dark-blue-gradient);
         border-radius: 15px;
+      }
+
+      .card-success {
+        background: linear-gradient($primary, $green-gradient, $blue-gradient, $dark-blue-gradient);
+      }
+
+      .card-danger {
+        background: linear-gradient(rgb(183, 15, 15), rgba(184, 17, 17, 0.9), rgba(31, 108, 180, 0.81), rgb(8, 68, 101));
       }
 
       .card {
@@ -74,6 +81,15 @@
           justify-content: space-between;
           align-items: baseline;
           margin-bottom: 5px;
+
+          .success {
+            color: $primary;
+          }
+
+          .danger {
+            color: $negative;
+            font-weight: normal;
+          }
         }
 
         .card-line-top {
