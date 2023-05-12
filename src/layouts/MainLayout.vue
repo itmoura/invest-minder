@@ -21,11 +21,9 @@
           round
           class="icon-notifications"
         >
-          <img
-            alt="Notifications Icon"
-            src="~assets/icon-notifications.svg"
-            style="width: 36px; height: 36px"
-          >
+          <div style="border: 2px solid #FFFFFF; border-radius: 20px; text-align: center" @click="showModal">
+            <q-icon name="add" style="font-size: 30px"/>
+          </div>
         </q-btn>
       </q-toolbar>
     </q-header>
@@ -34,12 +32,13 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
+      class="menu-left"
     >
       <q-list>
         <q-item-label
           header
         >
-          Menu Lateral
+          Invest Minder
         </q-item-label>
 
         <EssentialLink
@@ -51,6 +50,7 @@
     </q-drawer>
 
     <q-page-container>
+      <ModalBuy :open="modalOpen" @close="handleModalClose" />
       <router-view />
     </q-page-container>
   </q-layout>
@@ -59,6 +59,7 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+import ModalBuy from "components/ModalBuy.vue";
 
 const linksList = [
   {
@@ -68,10 +69,22 @@ const linksList = [
     link: 'https://inatel.br/home/'
   },
   {
-    title: 'Github',
-    caption: 'github.com/itmoura/invest-minder',
+    title: 'Github Dimitri',
+    caption: 'github.com/dimeleone',
+    icon: 'code',
+    link: 'https://github.com/dimeleone'
+  },
+  {
+    title: 'Github Ítalo',
+    caption: 'github.com/itmoura',
     icon: 'code',
     link: 'https://github.com/itmoura/invest-minder'
+  },
+  {
+    title: 'Github Gabriel',
+    caption: 'github.com/redfoxghs',
+    icon: 'code',
+    link: 'https://github.com/redfoxghs'
   }
 ]
 
@@ -79,19 +92,28 @@ export default defineComponent({
   name: 'MainLayout',
 
   components: {
+    ModalBuy,
     EssentialLink
   },
 
   setup () {
     const leftDrawerOpen = ref(false)
+    const modalOpen = ref(false);
 
     return {
       essentialLinks: linksList,
       leftDrawerOpen,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
+      },
+      modalOpen,
+      showModal () {
+        this.modalOpen = true;
+      },
+      handleModalClose () {
+        modalOpen.value = false
       }
     }
-  }
+  },
 })
 </script>
