@@ -6,14 +6,14 @@
       </q-card-section>
 
       <q-form style="width: 90%; margin: 0 auto;">
-        <q-input outlined v-model="name" label="Nome do ativo" style="margin-top: 10px" dark />
-        <q-input outlined v-model="price" label="Preço do ativo" style="margin-top: 10px" dark type="number" />
-        <q-input outlined v-model="quantity" label="Quantidade" style="margin-top: 10px" dark type="number" />
+        <q-input outlined v-model="name" label="Nome do ativo" style="margin-top: 10px" dark data-cy="nome-do-ativo" />
+        <q-input outlined v-model="price" label="Preço do ativo" style="margin-top: 10px" dark type="number" data-cy="preco-do-ativo" />
+        <q-input outlined v-model="quantity" label="Quantidade" style="margin-top: 10px" dark type="number" data-cy="quantidade" />
       </q-form>
 
       <q-card-actions align="right">
-        <q-btn flat label="Cancelar" color="negative" @click="onReset" v-close-popup/>
-        <q-btn flat label="Salvar" color="positive" @click="onSubmit" v-close-popup/>
+        <q-btn id="cancelInvest"  flat label="Cancelar" color="negative" @click="onReset" v-close-popup/>
+        <q-btn id="saveInvest" flat label="Salvar" color="positive" @click="onSubmit" v-close-popup/>
       </q-card-actions>
     </q-card>
   </q-dialog>
