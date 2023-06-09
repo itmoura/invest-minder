@@ -11,6 +11,9 @@
       <div class="investment">
         <p>Meus <br/> Investimentos</p>
       </div>
+      <div v-if="!existResult" class="not_investiment">
+        <p>Você ainda não possui investimentos cadastrados.</p>
+      </div>
 
       <q-carousel
         v-model="slide"
@@ -103,7 +106,8 @@ export default defineComponent({
       wallet: 0.00,
       assets: [],
       assetClicked: null,
-      myAssets: []
+      myAssets: [],
+      existResult: false
     }
   },
   setup () {
@@ -139,6 +143,7 @@ export default defineComponent({
       .then((response) => {
         response.data.map((res) => {
           this.wallet += res.totalSpend
+          this.existResult = true
         })
         this.myAssets = response.data
       })
